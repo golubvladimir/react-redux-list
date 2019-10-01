@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Row from '../../grid/Row';
-import Column from '../../grid/Column';
-import Search from '../List/Search'
-import Select from '../../elements/Select';
+import Row from 'grid/Row';
+import Column from 'grid/Column';
+import Search from '../Search'
+import Select from '../../../elements/Select';
 
 const SelectLabel = styled(Select)`
     width: calc(50% - 5px);
