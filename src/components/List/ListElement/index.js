@@ -1,2 +1,2 @@
-import ListElement from './ListElement';
-export default ListElement;
+import List from './List';
+export default List;
