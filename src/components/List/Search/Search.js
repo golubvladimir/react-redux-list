@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Input from '../../elements/Input';
+import Input from '../../../elements/Input';
 
 const InputSearch = styled(Input)`
     width: 100%;

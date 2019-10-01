@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Row from '../../grid/Row';
 import Column from '../../grid/Column';
-import Search from './../Search'
+import Search from '../List/Search'
 import Select from '../../elements/Select';
 
 const SelectLabel = styled(Select)`

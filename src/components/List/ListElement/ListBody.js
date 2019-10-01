@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ListItem from './ListItem';
-import Row from '../../grid/Row';
-import Column from '../../grid/Column';
+import Row from '../../../grid/Row';
+import Column from '../../../grid/Column';
 
 const ListItemStyled = styled(ListItem)`
     margin-bottom: 10px;

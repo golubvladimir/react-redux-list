@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index'
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons/index'
 
-import Label from '../../elements/Label';
-import Button from '../../elements/Button';
+import Label from '../../../elements/Label';
+import Button from '../../../elements/Button';
 
 const ListItem = styled.div`
     border: 1px solid #d9d9d9
