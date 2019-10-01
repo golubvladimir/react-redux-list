@@ -15,7 +15,7 @@ const ListItemStyled = styled(ListItem)`
     }
 `;
 
-export default ({items = []}) => {
+export default ({items = [], onDelete}) => {
     return (
         <List>
             {
@@ -24,6 +24,7 @@ export default ({items = []}) => {
                         <ListItemStyled
                             key={item.id}
                             {...item}
+                            onDelete={onDelete}
                         />
                     )
                     : null

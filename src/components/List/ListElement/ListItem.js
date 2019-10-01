@@ -64,7 +64,8 @@ export default (props) => {
         email,
         dateCreate,
         dateUpdate,
-        label
+        label,
+        onDelete
     } = props;
 
     return (
@@ -81,7 +82,7 @@ export default (props) => {
                 <FontAwesomeIcon icon={faEdit} />
             </ButtonEdit>
             <ButtonDelete
-                clickFunc={() => {}}
+                clickFunc={() => {onDelete(id)}}
             >
                 <FontAwesomeIcon icon={faTrash} />
             </ButtonDelete>

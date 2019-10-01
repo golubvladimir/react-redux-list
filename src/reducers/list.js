@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actions';
+
 const initialState = {
     items: [
         {
@@ -29,10 +31,13 @@ const initialState = {
 
 export default function list(state = initialState, action) {
     switch (action.type) {
-        case 'ADD':
+        case actionTypes.ADD_ITEM:
             return state;
-        case 'DELETE':
-            return state;
+        case actionTypes.DELETE_ITEM:
+            return {
+                ...state,
+                items: state.items.filter(item => item.id !== action.data)
+            };
         default:
             return state;
     }
