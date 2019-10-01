@@ -1,5 +1,30 @@
 const initialState = {
-    items: [1, 2, 4]
+    items: [
+        {
+            id: '1',
+            name: 'Dima',
+            email: 'test1@mail.ru',
+            label: 'work',
+            dateCreate: Date.now().toString(),
+            dateUpdate: Date.now().toString()
+        },
+        {
+            id: '2',
+            name: 'Vova',
+            email: 'test2@mail.ru',
+            label: 'home',
+            dateCreate: Date.now().toString(),
+            dateUpdate: Date.now().toString()
+        },
+        {
+            id: '3',
+            name: 'Vova',
+            email: 'test2@mail.ru',
+            label: 'home',
+            dateCreate: Date.now().toString(),
+            dateUpdate: Date.now().toString()
+        }
+    ]
 };
 
 export default function list(state = initialState, action) {
