@@ -17,7 +17,7 @@ const SelectSorting = styled(Select)`
 
 export default (props) => {
 
-    let { className, onLabelSelect, onSortingChange } = props;
+    let { className, onLabelSelect, onSortingChange, onSearchChange } = props;
 
     return (
         <div className={ className }>
@@ -28,7 +28,9 @@ export default (props) => {
                     sm={3}
                     xs={3}
                 >
-                    <Search />
+                    <Search
+                        searchFunc={onSearchChange}
+                    />
                 </Column>
                 <Column
                     lg={4}

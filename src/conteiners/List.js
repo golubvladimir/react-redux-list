@@ -11,12 +11,13 @@ const StyledControls = styled(Controls)`
     margin-bottom: 10px;
 `;
 
-const List = ({ items, onDelete, onLabelSelect, onSortingChange }) => {
+const List = ({ items, onDelete, onLabelSelect, onSortingChange, onSearchChange }) => {
     return (
         <>
             <StyledControls
                 onLabelSelect={onLabelSelect}
                 onSortingChange={onSortingChange}
+                onSearchChange={onSearchChange}
             />
             <ListElement
                 items={items}
@@ -53,6 +54,15 @@ const mapStateToProps = (state) => {
                 }
             })
             .filter(item => item.label.includes(state.labelFilter))
+            .filter(item => {
+                if (state.searchItems[0] && state.searchItems[1]) {
+                    return item.name.includes(state.searchItems[0]) && item.email.includes(state.searchItems[1])
+                } else if (state.searchItems[0]) {
+                    return item.name.includes(state.searchItems[0]);
+                } else {
+                    return true;
+                }
+            })
     }
 };
 
@@ -60,7 +70,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onDelete: (index) => dispatch({type: actionTypes.DELETE_ITEM, data: index}),
         onLabelSelect: (label) => dispatch({type: actionTypes.FILTER_LABEL_SELECT, data: label}),
-        onSortingChange: (typeSorting) => dispatch({type: actionTypes.SORTING_CHANGE, data: typeSorting})
+        onSortingChange: (typeSorting) => dispatch({type: actionTypes.SORTING_CHANGE, data: typeSorting}),
+        onSearchChange: (searchString) => dispatch({type: actionTypes.SEARCH_ITEMS, data: searchString})
     }
 };
 
