@@ -17,7 +17,9 @@ class Search extends Component {
     handlerChange = (event) => {
         this.setState({
             value: event.target.value
-        })
+        });
+
+        this.props.searchFunc(event.target.value);
     };
 
     render() {
