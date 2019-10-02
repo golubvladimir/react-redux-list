@@ -1,31 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const Select = styled.select`
+const StyledSelect = styled.select`
     height: 40px;
     font-size: 16px;
 `;
 
-export default (props) => {
+class Select extends Component {
+    constructor(props){
+        super(props);
 
-    let {
-        className,
-        items,
-        selected = 0,
-        changeFunc = () => {}
-    } = props;
+        this.state = {
+            selected: props.selected ? props.selected : (props.nullElement ? props.nullElement.value : props.items[0].value)
+        }
+    }
 
-    return (
-        <Select
-            value={selected}
-            onChange={changeFunc}
-            className={className}
-        >
-            {
-                items.map(item =>
-                    <option key={ item.id } value={ item.value }>{ item.title }</option>
-                )
-            }
-        </Select>
-    )
+    handlerChange = (event) => {
+        this.setState({
+            selected: event.target.value
+        });
+
+        this.props.changeFunc(event.target.value);
+    };
+
+    render() {
+        const {
+            className,
+            items,
+            nullElement
+        } = this.props;
+
+        return (
+            <StyledSelect
+                value={this.state.selected}
+                onChange={ this.handlerChange }
+                className={className}
+            >
+                {
+                    nullElement ?
+                        <option key={ nullElement.id } value={ nullElement.value }>{ nullElement.title }</option>
+                        : null
+                }
+                {
+                    items.map(item =>
+                        <option key={ item.id } value={ item.value }>{ item.title }</option>
+                    )
+                }
+            </StyledSelect>
+        )
+    }
 }
+
+export default Select;
