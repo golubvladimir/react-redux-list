@@ -17,7 +17,7 @@ const SelectSorting = styled(Select)`
 
 export default (props) => {
 
-    let { className } = props;
+    let { className, onLabelSelect } = props;
 
     return (
         <div className={ className }>
@@ -37,7 +37,9 @@ export default (props) => {
                     xs={4}
                 >
                     <SelectLabel
-                        items={[{id: 1, title: 'Заголовок 1', value: 1}, {id: 2, title: 'Заголовок 2', value: 2}]}
+                        items={[{id: 1, title: 'Home', value: 'home'}, {id: 2, title: 'Work', value: 'work'}]}
+                        changeFunc={onLabelSelect}
+                        nullElement={{id: 0, title: 'Выберите ярлык', value: ''}}
                     />
                     <SelectSorting
                         items={[{id: 1, title: 'Заголовок 1', value: 1}, {id: 2, title: 'Заголовок 2', value: 2}]}

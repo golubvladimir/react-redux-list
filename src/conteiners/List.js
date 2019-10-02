@@ -11,11 +11,13 @@ const StyledControls = styled(Controls)`
     margin-bottom: 10px;
 `;
 
-const List = ({ items, onDelete }) => {
+const List = ({ items, onDelete, onLabelSelect }) => {
 
     return (
         <>
-            <StyledControls />
+            <StyledControls
+                onLabelSelect={onLabelSelect}
+            />
             <ListElement
                 items={items}
                 onDelete={onDelete}
@@ -26,13 +28,14 @@ const List = ({ items, onDelete }) => {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.list.items
+        items: state.list.items.filter(item => item.label.includes(state.labelFilter))
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDelete: (index) => dispatch({type: actionTypes.DELETE_ITEM, data: index})
+        onDelete: (index) => dispatch({type: actionTypes.DELETE_ITEM, data: index}),
+        onLabelSelect: (label) => dispatch({type: actionTypes.FILTER_LABEL_SELECT, data: label})
     }
 };
 
