@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons/index'
 
+import InputField from '../../common/InputField';
+
 import Label from '../../../elements/Label';
 import Button from '../../../elements/Button';
+import Select from '../../../elements/Select';
 
-const ListItem = styled.div`
+const StyledItem = styled.div`
     border: 1px solid #d9d9d9
     display: flex;
     padding: 5px 10px;
@@ -23,7 +26,17 @@ const Name = styled.p`
     padding: 0 15px;
 `;
 
+const InputName = styled(InputField)`
+    width: 20%;
+    padding: 0 15px;
+`;
+
 const Email = styled.p`
+    width: 20%;
+    padding: 0 15px;
+`;
+
+const InputEmail = styled(InputField)`
     width: 20%;
     padding: 0 15px;
 `;
@@ -55,37 +68,101 @@ const ButtonDelete = styled(Button)`
     margin-left: 10px;
 `;
 
-export default (props) => {
+class ListItem extends Component {
+    state = {
+        edit: false,
+        editItem: {}
+    };
 
-    let {
-        className = '',
-        id,
-        name,
-        email,
-        dateCreate,
-        dateUpdate,
-        label,
-        onDelete
-    } = props;
+    handlerEdit = (id, name, email, label) => {
+        if (this.state.edit) {
+            this.props.onEdit({...this.state.editItem, dateUpdate: Date.now()});
 
-    return (
-        <ListItem className={className}>
-            <Number>{ id }</Number>
-            <Name>Имя: { name }</Name>
-            <Email>Email: { email }</Email>
-            <DateCreate>Cоз: { dateCreate }</DateCreate>
-            <DateUpdate>Обн: { dateUpdate }</DateUpdate>
-            <LabelStyled>{ label }</LabelStyled>
-            <ButtonEdit
-                clickFunc={() => {}}
-            >
-                <FontAwesomeIcon icon={faEdit} />
-            </ButtonEdit>
-            <ButtonDelete
-                clickFunc={() => {onDelete(id)}}
-            >
-                <FontAwesomeIcon icon={faTrash} />
-            </ButtonDelete>
-        </ListItem>
-    )
+            this.setState({
+                edit: false
+            });
+        }  else {
+            this.setState({
+                edit: true,
+                editItem: {
+                    id: id,
+                    name: name,
+                    email: email,
+                    label: label
+                }
+            })
+        }
+    };
+
+    handlerChange = (event, type) => {
+        this.setState(prevState => {
+            return {
+                editItem: {
+                    ...prevState.editItem,
+                    [type]: event
+                }
+            }
+        });
+    };
+
+    render() {
+        let {
+            className = '',
+            id,
+            name,
+            email,
+            dateCreate,
+            dateUpdate,
+            label,
+            onDelete,
+        } = this.props;
+
+        return (
+            <StyledItem className={className}>
+                <Number>{ id }</Number>
+                {
+                    this.state.edit ?
+                        <>
+                            <InputName
+                                value={ name }
+                                changeFunc={ (value) => this.handlerChange(value, 'name') }
+                            />
+                            <InputEmail
+                                value={ email }
+                                changeFunc={ (value) => this.handlerChange(value, 'email') }
+                            />
+                            <Select
+                                items={[
+                                    {id: 1, title: 'Home', value: 'home'},
+                                    {id: 2, title: 'Work', value: 'work'}
+                                ]}
+                                selected={ label }
+                                changeFunc={ (value) => this.handlerChange(value, 'label') }
+                            />
+                        </>
+                        :
+                        <>
+                            <Name>Имя: { name }</Name>
+                            <Email>Email: { email }</Email>
+                            <LabelStyled>{ label }</LabelStyled>
+                        </>
+                }
+
+                <DateCreate>Cоз: { dateCreate }</DateCreate>
+                <DateUpdate>Обн: { dateUpdate }</DateUpdate>
+                <ButtonEdit
+                    clickFunc={() => this.handlerEdit(id, name, email, label)}
+                >
+                    <FontAwesomeIcon icon={faEdit} />
+                </ButtonEdit>
+                <ButtonDelete
+                    clickFunc={() => {onDelete(id)}}
+                >
+                    <FontAwesomeIcon icon={faTrash} />
+                </ButtonDelete>
+            </StyledItem>
+        )
+    }
 }
+
+export default ListItem;

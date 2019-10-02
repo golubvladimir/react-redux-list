@@ -11,7 +11,7 @@ const StyledControls = styled(Controls)`
     margin-bottom: 10px;
 `;
 
-const List = ({ items, onDelete, onLabelSelect, onSortingChange, onSearchChange }) => {
+const List = ({ items, onDelete, onLabelSelect, onSortingChange, onSearchChange, onEdit }) => {
     return (
         <>
             <StyledControls
@@ -22,6 +22,7 @@ const List = ({ items, onDelete, onLabelSelect, onSortingChange, onSearchChange 
             <ListElement
                 items={items}
                 onDelete={onDelete}
+                onEdit={onEdit}
             />
         </>
     )
@@ -69,6 +70,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onDelete: (index) => dispatch({type: actionTypes.DELETE_ITEM, data: index}),
+        onEdit: (itemUpdate) => dispatch({type: actionTypes.EDIT_ITEM, data: itemUpdate}),
         onLabelSelect: (label) => dispatch({type: actionTypes.FILTER_LABEL_SELECT, data: label}),
         onSortingChange: (typeSorting) => dispatch({type: actionTypes.SORTING_CHANGE, data: typeSorting}),
         onSearchChange: (searchString) => dispatch({type: actionTypes.SEARCH_ITEMS, data: searchString})
