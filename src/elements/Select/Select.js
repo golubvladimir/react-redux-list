@@ -43,7 +43,7 @@ class Select extends Component {
                 }
                 {
                     items.map(item =>
-                        <option key={ item.id } value={ item.value }>{ item.title }</option>
+                        <option key={ item.id } value={ typeof(item.value) === 'object' ? JSON.stringify(item.value) : item.value }>{ item.title }</option>
                     )
                 }
             </StyledSelect>
