@@ -11,6 +11,7 @@ const Button = styled.button`
     border: none;
     border-radius: 10px;
     outline: none;
+    font-size: 14px;
     
     & svg.svg-inline--fa {
         width: 15px;
@@ -21,7 +22,8 @@ const Button = styled.button`
 export default (props) => {
     let {
         className = '',
-        clickFunc = () => {}
+        clickFunc = () => {},
+        submit = false
     } = props;
 
 
@@ -29,6 +31,7 @@ export default (props) => {
         <Button
             className={ className }
             onClick={ clickFunc }
+            type={ submit ? 'submit' : 'button' }
         >{ props.children }</Button>
     )
 }
