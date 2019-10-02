@@ -17,7 +17,7 @@ const SelectSorting = styled(Select)`
 
 export default (props) => {
 
-    let { className, onLabelSelect } = props;
+    let { className, onLabelSelect, onSortingChange } = props;
 
     return (
         <div className={ className }>
@@ -42,7 +42,15 @@ export default (props) => {
                         nullElement={{id: 0, title: 'Выберите ярлык', value: ''}}
                     />
                     <SelectSorting
-                        items={[{id: 1, title: 'Заголовок 1', value: 1}, {id: 2, title: 'Заголовок 2', value: 2}]}
+                        items={[
+                            {id: 1, value: {type: 'name', direction: 'up'}, title: 'Имя (по возврастанию)'},
+                            {id: 2, value: {type: 'name', direction: 'down'}, title: 'Имя (по убыванию)'},
+                            {id: 3, value: {type: 'dateCreate', direction: 'up'}, title: 'Дата создания (по возрастанию)'},
+                            {id: 4, value: {type: 'dateCreate', direction: 'down'}, title: 'Дата создания (по убыванию)'},
+                            {id: 5, value: {type: 'dateUpdate', direction: 'up'}, title: 'Дата создания (по возрастанию)'},
+                            {id: 6, value: {type: 'dateUpdate', direction: 'down'}, title: 'Дата создания (по убыванию)'},
+                        ]}
+                        changeFunc={onSortingChange}
                     />
                 </Column>
             </Row>
