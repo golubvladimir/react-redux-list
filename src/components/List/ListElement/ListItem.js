@@ -94,12 +94,12 @@ class ListItem extends Component {
         }
     };
 
-    handlerChange = (event, type) => {
+    handlerChange = (value, type) => {
         this.setState(prevState => {
             return {
                 editItem: {
                     ...prevState.editItem,
-                    [type]: event
+                    [type]: value
                 }
             }
         });
@@ -148,8 +148,8 @@ class ListItem extends Component {
                         </>
                 }
 
-                <DateCreate>Cоз: { dateCreate }</DateCreate>
-                <DateUpdate>Обн: { dateUpdate }</DateUpdate>
+                <DateCreate>Cоз: { `${new Date(+dateCreate).getDay()}-${new Date(+dateCreate).getMonth()}-${new Date(+dateCreate).getFullYear()} ${new Date(+dateCreate).getHours()}:${new Date(+dateCreate).getMinutes()}` }</DateCreate>
+                <DateUpdate>Обн: { `${new Date(+dateUpdate).getDay()}-${new Date(+dateUpdate).getMonth()}-${new Date(+dateUpdate).getFullYear()} ${new Date(+dateUpdate).getHours()}:${new Date(+dateUpdate).getMinutes()}` }</DateUpdate>
                 <ButtonEdit
                     clickFunc={() => this.handlerEdit(id, name, email, label)}
                 >
