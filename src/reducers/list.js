@@ -32,7 +32,10 @@ const initialState = {
 export default function list(state = initialState, action) {
     switch (action.type) {
         case actionTypes.ADD_ITEM:
-            return state;
+            return {
+                ...state,
+                items: [...state.items, action.data]
+            };
         case actionTypes.EDIT_ITEM:
             return {
                 ...state,
