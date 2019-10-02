@@ -23,14 +23,14 @@ const GlobalStyles = createGlobalStyle`
 function App() {
     return (
         <>
-            <Layout>
-                <Router>
+            <Router>
+                <Layout>
                     <Switch>
                         <Route path={'/'} exact={true} component={List} />
-                        <Route path={'/form'} component={FormAdd} />
+                        <Route path={'/form-add'} component={FormAdd} />
                     </Switch>
-                </Router>
-            </Layout>
+                </Layout>
+            </Router>
             <GlobalStyles/>
         </>
     );
