@@ -49,8 +49,8 @@ export default (props) => {
                             {id: 2, value: {type: 'name', direction: 'down'}, title: 'Имя (по убыванию)'},
                             {id: 3, value: {type: 'dateCreate', direction: 'up'}, title: 'Дата создания (по возрастанию)'},
                             {id: 4, value: {type: 'dateCreate', direction: 'down'}, title: 'Дата создания (по убыванию)'},
-                            {id: 5, value: {type: 'dateUpdate', direction: 'up'}, title: 'Дата создания (по возрастанию)'},
-                            {id: 6, value: {type: 'dateUpdate', direction: 'down'}, title: 'Дата создания (по убыванию)'},
+                            {id: 5, value: {type: 'dateUpdate', direction: 'up'}, title: 'Дата обновления (по возрастанию)'},
+                            {id: 6, value: {type: 'dateUpdate', direction: 'down'}, title: 'Дата обновления (по убыванию)'},
                         ]}
                         changeFunc={onSortingChange}
                     />
